@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Lucid — Brand. Marketing. Web.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --teal:         #00d4aa;
+            --teal-glow:    rgba(0,212,170,0.10);
+            --teal-border:  rgba(0,212,170,0.22);
+            --gold:         #C8A84B;
+            --gold-light:   #E2C46A;
+            --gold-glow:    rgba(200,168,75,0.07);
+            --gold-border:  rgba(200,168,75,0.16);
+            --bg:           #070707;
+            --bg-2:         #0f0f0f;
+            --bg-3:         #141414;
+            --border:       rgba(200,168,75,0.11);
+            --border-mid:   rgba(200,168,75,0.22);
+            --text:         #F0EBE0;
+            --text-mid:     #9A9590;
+            --text-dim:     #5a5652;
+            --blue:         #4e8ef7;
+            --purple:       #a855f7;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Grain */
+        .grain {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.04;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 500;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3.5rem;
+            border-bottom: 1px solid transparent;
+            transition: background 0.45s, border-color 0.45s, backdrop-filter 0.45s;
+        }
+
+        nav.scrolled {
+            background: rgba(7,7,7,0.94);
+            border-bottom-color: var(--border);
+            backdrop-filter: blur(18px);
+        }
+
+        .nav-logo {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo .logo-dot {
+            display: block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--teal);
+            flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(0,212,170,0.6);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-mid);
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            transition: color 0.25s;
+        }
+
+        .nav-links a:hover { color: var(--teal); }
+
+        .nav-actions { display: flex; align-items: center; gap: 0.8rem; }
+
+        .btn-nav-ghost {
+            display: inline-block;
+            padding: 0.42rem 1.1rem;
+            border: 1px solid var(--border-mid);
+            color: var(--gold);
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.25s;
+        }
+
+        .btn-nav-ghost:hover { border-color: var(--gold); background: var(--gold-glow); }
+
+        .btn-nav-primary {
+            display: inline-block;
+            padding: 0.42rem 1.2rem;
+            background: var(--teal);
+            color: #000;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.25s;
+        }
+
+        .btn-nav-primary:hover {
+            background: #00f0c0;
+            box-shadow: 0 0 22px rgba(0,212,170,0.35);
+        }
+
+        /* HERO */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 9rem 2rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-radial {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 50% 60%, rgba(0,212,170,0.07) 0%, transparent 65%),
+                radial-gradient(ellipse 80% 40% at 50% 100%, rgba(200,168,75,0.05) 0%, transparent 55%);
+            pointer-events: none;
+        }
+
+        .hero-lines { position: absolute; inset: 0; pointer-events: none; }
+
+        .hero-lines span {
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent 0%, var(--border) 25%, var(--border) 75%, transparent 100%);
+        }
+
+        .hero-lines span:nth-child(1) { left: calc(50% - 480px); }
+        .hero-lines span:nth-child(2) { right: calc(50% - 480px); }
+        .hero-lines span:nth-child(3) { left: 50%; opacity: 0.35; }
+
+        .hero-content { position: relative; z-index: 1; max-width: 960px; }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.9rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 2rem;
+        }
+
+        .eyebrow i { display: block; width: 28px; height: 1px; background: var(--teal); opacity: 0.5; }
+
+        .hero-h1 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: clamp(3.2rem, 8vw, 7.2rem);
+            font-weight: 700;
+            line-height: 1.0;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.6rem;
+            color: var(--text);
+        }
+
+        .accent-teal { color: var(--teal); }
+        .accent-gold { color: var(--gold-light); }
+
+        .hero-sub {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-mid);
+            max-width: 520px;
+            margin: 0 auto 3rem;
+            line-height: 1.85;
+        }
+
+        .cta-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--teal);
+            color: #000;
+            padding: 0.85rem 2.2rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #00f0c0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(0,212,170,0.32);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: var(--text-mid);
+            padding: 0.85rem 1.8rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover { border-color: var(--border-mid); color: var(--text); }
+
+        /* HERO STATS */
+        .hero-stats {
+            display: flex;
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-top: 5rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .stat {
+            flex: 1;
+            background: var(--bg-2);
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .stat::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 2px;
+        }
+
+        .stat:nth-child(1)::after { background: var(--teal); }
+        .stat:nth-child(2)::after { background: var(--gold); }
+        .stat:nth-child(3)::after { background: var(--blue); }
+        .stat:nth-child(4)::after { background: var(--purple); }
+
+        .stat-num {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat:nth-child(1) .stat-num { color: var(--teal); }
+        .stat:nth-child(2) .stat-num { color: var(--gold); }
+
+        .stat-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        /* DIVIDER */
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border), transparent);
+        }
+
+        /* SECTION BASE */
+        section { padding: 7rem 2rem; }
+        .container { max-width: 1120px; margin: 0 auto; }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 1rem;
+        }
+
+        .section-label::before {
+            content: '';
+            display: block;
+            width: 18px;
+            height: 1px;
+            background: var(--teal);
+            opacity: 0.6;
+        }
+
+        .section-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: clamp(1.9rem, 4vw, 3.2rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.8rem;
+        }
+
+        .title-bar {
+            width: 36px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            margin-bottom: 1.4rem;
+        }
+
+        .section-sub {
+            font-size: 14px;
+            color: var(--text-mid);
+            line-height: 1.85;
+            max-width: 520px;
+        }
+
+        /* PROBLEM */
+        #problem { background: var(--bg-2); }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+            margin-top: 4rem;
+        }
+
+        .problem-copy p {
+            font-size: 14px;
+            color: var(--text-mid);
+            line-height: 1.9;
+            margin-bottom: 1.2rem;
+        }
+
+        .pain-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .pain-item {
+            display: grid;
+            grid-template-columns: 52px 1fr;
+            background: var(--bg-2);
+            transition: background 0.25s;
+        }
+
+        .pain-item:hover { background: var(--bg-3); }
+
+        .pain-icon-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--border);
+            font-size: 1.1rem;
+            background: var(--bg);
+        }
+
+        .pain-text { padding: 1.4rem 1.5rem; }
+
+        .pain-text h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .pain-text p { font-size: 13px; color: var(--text-mid); line-height: 1.7; }
+
+        /* SYSTEM */
+        #system { background: var(--bg); }
+
+        .system-head { text-align: center; margin-bottom: 4.5rem; }
+        .system-head .section-label { justify-content: center; }
+        .system-head .section-label::before { display: none; }
+        .system-head .title-bar { margin: 0 auto 1.4rem; }
+
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .pillar {
+            background: var(--bg);
+            padding: 2.4rem 2rem;
+            position: relative;
+            transition: background 0.3s;
+        }
+
+        .pillar:hover { background: var(--bg-2); }
+
+        .pillar-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 1.2px;
+            color: var(--text-dim);
+            margin-bottom: 1.2rem;
+        }
+
+        .pillar-icon-box {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 1.3rem;
+            background: var(--bg-2);
+            transition: border-color 0.3s;
+        }
+
+        .pillar:hover .pillar-icon-box { border-color: var(--teal); }
+
+        .pillar h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 0.7rem;
+            letter-spacing: -0.01em;
+        }
+
+        .pillar p { font-size: 13px; color: var(--text-mid); line-height: 1.85; margin-bottom: 1.5rem; }
+
+        .pillar-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+        .chip {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            border: 1px solid var(--border);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .pillar-arrow {
+            position: absolute;
+            right: -14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 28px;
+            background: var(--bg-3);
+            border: 1px solid var(--border-mid);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--teal);
+            font-size: 11px;
+            z-index: 2;
+        }
+
+        /* SERVICES */
+        #services { background: var(--bg-2); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 3.5rem;
+        }
+
+        .svc-card {
+            background: var(--bg-2);
+            padding: 2.4rem;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s;
+        }
+
+        .svc-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--teal);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .svc-card:hover::after { transform: scaleX(1); }
+        .svc-card:hover { background: var(--bg-3); }
+
+        .svc-icon {
+            width: 48px; height: 48px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 1.4rem;
+            background: var(--bg);
+            transition: border-color 0.3s;
+        }
+
+        .svc-card:hover .svc-icon { border-color: var(--teal); }
+
+        .svc-card h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 0.7rem;
+            letter-spacing: -0.01em;
+        }
+
+        .svc-card > p { font-size: 13px; color: var(--text-mid); line-height: 1.85; margin-bottom: 1.6rem; }
+
+        .svc-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+
+        .svc-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 13px;
+            color: var(--text-mid);
+        }
+
+        .svc-list li::before {
+            content: '';
+            display: block;
+            width: 12px; height: 1px;
+            background: var(--teal);
+            flex-shrink: 0;
+        }
+
+        /* WHY */
+        #why { background: var(--bg); }
+
+        .why-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.8fr;
+            gap: 7rem;
+            align-items: start;
+        }
+
+        .why-sticky { position: sticky; top: 9rem; }
+
+        .why-sticky h2 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.12;
+            letter-spacing: -0.02em;
+        }
+
+        .why-list { display: flex; flex-direction: column; }
+
+        .why-item {
+            display: grid;
+            grid-template-columns: 3rem 1fr;
+            gap: 1.2rem;
+            padding: 1.8rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: padding-left 0.3s;
+        }
+
+        .why-item:first-child { border-top: 1px solid var(--border); }
+        .why-item:hover { padding-left: 0.5rem; }
+
+        .why-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--teal);
+            padding-top: 0.2rem;
+            letter-spacing: 1px;
+        }
+
+        .why-item h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .why-item p { font-size: 13px; color: var(--text-mid); line-height: 1.85; }
+
+        /* VENTURES */
+        #ventures { background: var(--bg-2); padding: 5.5rem 2rem; }
+
+        .vent-head { text-align: center; margin-bottom: 2.8rem; }
+        .vent-head .section-label { justify-content: center; }
+        .vent-head .section-label::before { display: none; }
+        .vent-head .title-bar { margin: 0 auto 1.4rem; }
+
+        .vent-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .ventures-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 2.5rem;
+        }
+
+        .venture-card {
+            background: var(--bg-2);
+            padding: 2.2rem;
+            transition: background 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .venture-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .venture-card:nth-child(1)::before { background: var(--teal); }
+        .venture-card:nth-child(2)::before { background: var(--gold); }
+        .venture-card:nth-child(3)::before { background: var(--blue); }
+
+        .venture-card:hover::before { transform: scaleX(1); }
+        .venture-card:hover { background: var(--bg-3); }
+
+        .venture-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+
+        .venture-card h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.02em;
+        }
+
+        .venture-card:nth-child(1) h3 { color: var(--teal); }
+        .venture-card:nth-child(2) h3 { color: var(--gold-light); }
+        .venture-card:nth-child(3) h3 { color: var(--blue); }
+
+        .venture-card p {
+            font-size: 13px;
+            color: var(--text-mid);
+            line-height: 1.85;
+            margin-bottom: 1.4rem;
+        }
+
+        .venture-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s;
+        }
+
+        .venture-card:nth-child(1) .venture-link:hover { color: var(--teal); }
+        .venture-card:nth-child(2) .venture-link:hover { color: var(--gold); }
+        .venture-card:nth-child(3) .venture-link:hover { color: var(--blue); }
+
+        /* CTA */
+        #cta {
+            background: var(--bg);
+            padding: 9rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(0,212,170,0.07) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        #cta::after {
+            content: '';
+            position: absolute;
+            inset: 4rem;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            pointer-events: none;
+        }
+
+        .cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+
+        .cta-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5.2rem);
+            font-weight: 700;
+            line-height: 1.06;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.4rem;
+        }
+
+        .cta-sub {
+            font-size: 14px;
+            color: var(--text-mid);
+            line-height: 1.85;
+            margin: 0 auto 2.8rem;
+            max-width: 440px;
+        }
+
+        .cta-note {
+            margin-top: 1.3rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-dim);
+            letter-spacing: 0.8px;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--text-dim);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .footer-logo .logo-dot {
+            display: block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--teal);
+            flex-shrink: 0;
+            opacity: 0.6;
+        }
+
+        .footer-copy {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-dim);
+            letter-spacing: 0.5px;
+        }
+
+        .footer-nav { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+
+        .footer-nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.22s;
+        }
+
+        .footer-nav a:hover { color: var(--teal); }
+
+        .footer-privacy-btn {
+            color: var(--text-dim);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.22s;
+        }
+
+        .footer-privacy-btn:hover { color: var(--teal); }
+
+        /* PRIVACY MODAL */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(7,7,7,0.88);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+        .modal {
+            background: var(--bg-2);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            max-width: 680px;
+            width: 100%;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(18px);
+            transition: transform 0.3s;
+        }
+
+        .modal-overlay.open .modal { transform: translateY(0); }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .modal-header h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            width: 32px; height: 32px;
+            background: var(--bg-3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-mid);
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover { border-color: var(--border-mid); color: var(--text); }
+
+        .modal-body { padding: 2rem; overflow-y: auto; flex: 1; }
+
+        .modal-body h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            margin: 1.5rem 0 0.4rem;
+        }
+
+        .modal-body h4:first-child { margin-top: 0; }
+
+        .modal-body p { font-size: 13px; color: var(--text-mid); line-height: 1.85; }
+
+        .modal-body a { color: var(--teal); text-decoration: none; }
+        .modal-body a:hover { text-decoration: underline; }
+
+        .modal-updated {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.8px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* SCROLL REVEAL */
+        .r {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+
+        .r.vis { opacity: 1; transform: translateY(0); }
+        .r.d1 { transition-delay: 0.08s; }
+        .r.d2 { transition-delay: 0.16s; }
+        .r.d3 { transition-delay: 0.24s; }
+        .r.d4 { transition-delay: 0.32s; }
+
+        /* RESPONSIVE */
+        @media (max-width: 960px) {
+            nav { padding: 0 1.5rem; }
+            .nav-links { display: none; }
+            .problem-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .pillars { grid-template-columns: 1fr; }
+            .pillar-arrow { display: none; }
+            .services-grid { grid-template-columns: 1fr; }
+            .ventures-grid { grid-template-columns: 1fr; }
+            .why-layout { grid-template-columns: 1fr; gap: 3rem; }
+            .why-sticky { position: static; }
+            .hero-stats { flex-direction: column; }
+            footer { flex-direction: column; text-align: center; padding: 2rem; gap: 1rem; }
+            .footer-nav { justify-content: center; flex-wrap: wrap; }
+            #cta::after { inset: 2rem; border-radius: 12px; }
+        }
+
+        @media (max-width: 520px) {
+            .hero-h1 { font-size: 2.6rem; }
+            .cta-title { font-size: 2.2rem; }
+            .btn-nav-ghost { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Grain -->
+<svg class="grain" xmlns="http://www.w3.org/2000/svg">
+    <filter id="noise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noise)"/>
+</svg>
+
+<!-- Privacy Modal -->
+<div class="modal-overlay" id="privacyModal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3>Privacy Policy</h3>
+            <button class="modal-close" onclick="closePrivacy()">✕</button>
+        </div>
+        <div class="modal-body">
+            <p class="modal-updated">Effective Date: January 1, 2025</p>
+
+            <h4>1. Who We Are</h4>
+            <p>Mr. Lucid ("we," "our," or "us") is a brand, marketing, and web design agency. Our registered address is <strong style="color:var(--text)">1529 West Pender St, Vancouver, BC V6G 3J3, Canada</strong>. For privacy inquiries, contact us at <a href="mailto:hello@mrlucid.xyz">hello@mrlucid.xyz</a>.</p>
+
+            <h4>2. Information We Collect</h4>
+            <p>We collect information you provide directly — including name, business name, email address, phone number, and details shared during a discovery call or form submission. We may also collect usage data such as pages visited, time on site, and device/browser type via standard analytics tools.</p>
+
+            <h4>3. How We Use Your Information</h4>
+            <p>We use your information to respond to inquiries, schedule discovery calls, deliver contracted services, send relevant follow-up communications you've consented to, and improve our website and services. We do not sell your personal information to any third party.</p>
+
+            <h4>4. Communications & Consent</h4>
+            <p>By submitting your contact information or booking a call, you consent to receiving communication from Mr. Lucid via email, SMS, or phone. You may opt out at any time by replying STOP (SMS) or clicking unsubscribe (email).</p>
+
+            <h4>5. Data Retention</h4>
+            <p>We retain your information for as long as necessary to fulfill the purposes described in this policy, or as required by applicable law. You may request deletion of your data at any time by emailing us.</p>
+
+            <h4>6. Third-Party Tools</h4>
+            <p>We use third-party platforms (including CRM, scheduling, and analytics tools) that may process your data on our behalf. These providers are contractually required to protect your information in accordance with applicable privacy laws.</p>
+
+            <h4>7. Your Rights</h4>
+            <p>Depending on your jurisdiction, you may have the right to access, correct, delete, or restrict processing of your personal data. To exercise any of these rights, contact us at <a href="mailto:hello@mrlucid.xyz">hello@mrlucid.xyz</a>.</p>
+
+            <h4>8. Security</h4>
+            <p>We implement appropriate technical and organizational measures to protect your information against unauthorized access, loss, or alteration.</p>
+
+            <h4>9. Changes to This Policy</h4>
+            <p>We may update this policy periodically. Material changes will be communicated via our website. Continued use of our site after changes constitutes your acceptance.</p>
+
+            <h4>10. Contact Us</h4>
+            <p>Mr. Lucid<br>
+            1529 West Pender St, Vancouver, BC V6G 3J3, Canada<br>
+            <a href="mailto:hello@mrlucid.xyz">hello@mrlucid.xyz</a></p>
+        </div>
+    </div>
+</div>
+
+
+<!-- NAV -->
+<nav id="nav">
+    <a href="#hero" class="nav-logo">
+        <span class="logo-dot"></span>
+        Mr. Lucid
+    </a>
+    <ul class="nav-links">
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#system">Approach</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#ventures">Ventures</a></li>
+    </ul>
+    <div class="nav-actions">
+        <a href="mailto:hello@mrlucid.xyz" class="btn-nav-ghost">✉ Say Hello</a>
+        <a href="https://calendar.app.google/rafBQmiqHHGcoiHVA" target="_blank" class="btn-nav-primary">Book a Call</a>
+    </div>
+</nav>
+
+
+<!-- HERO -->
+<section id="hero">
+    <div class="hero-radial"></div>
+    <div class="hero-lines"><span></span><span></span><span></span></div>
+
+    <div class="hero-content">
+        <div class="eyebrow r"><i></i>Brand · Marketing · Web Design<i></i></div>
+
+        <h1 class="hero-h1 r d1">
+            We Don't Build Brands.<br>
+            We Build <span class="accent-teal">Businesses.</span>
+        </h1>
+
+        <p class="hero-sub r d2">
+            Strategy-first brand identity, performance marketing, and web design that turns visibility into revenue — built for businesses that are serious about growth.
+        </p>
+
+        <div class="cta-row r d3">
+            <a href="https://calendar.app.google/rafBQmiqHHGcoiHVA" target="_blank" class="btn-primary">Book a Discovery Call →</a>
+            <a href="#services" class="btn-secondary">See What We Do ↓</a>
+        </div>
+
+        <div class="hero-stats r d4">
+            <div class="stat">
+                <div class="stat-num">3</div>
+                <div class="stat-label">Core Disciplines</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">Full</div>
+                <div class="stat-label">Stack Execution</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">0</div>
+                <div class="stat-label">Guesswork</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">1</div>
+                <div class="stat-label">Goal: Revenue</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- PROBLEM -->
+<section id="problem">
+    <div class="container">
+        <div class="problem-grid">
+            <div class="problem-copy">
+                <div class="section-label r">The Real Problem</div>
+                <h2 class="section-title r d1">You don't have a visibility problem.<br>You have a <span class="accent-teal">clarity</span> problem.</h2>
+                <div class="title-bar r d1"></div>
+                <p class="r d2">Most businesses look like everyone else, say what everyone else says, and then wonder why price is the only conversation they can have. The market can't choose you if it can't tell you apart.</p>
+                <p class="r d2">We close the gap between what your business actually is and how it shows up in the world — through brand, marketing, and web that all point to the same thing: growth.</p>
+            </div>
+            <div class="pain-list r d1">
+                <div class="pain-item">
+                    <div class="pain-icon-box">🪞</div>
+                    <div class="pain-text">
+                        <h4>Generic Branding, Forgettable Presence</h4>
+                        <p>A logo isn't a brand. If your identity doesn't communicate value at a glance, you're starting every sales conversation from zero.</p>
+                    </div>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-icon-box">📉</div>
+                    <div class="pain-text">
+                        <h4>Marketing Without a Foundation</h4>
+                        <p>Running ads on a weak brand is burning money. Without a clear message and a position in the market, no ad spend will save you.</p>
+                    </div>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-icon-box">🕸️</div>
+                    <div class="pain-text">
+                        <h4>A Website That Loses the Sale</h4>
+                        <p>Your website is your hardest-working salesperson — or it isn't. If it doesn't convert visitors into conversations, it's a liability, not an asset.</p>
+                    </div>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-icon-box">🔀</div>
+                    <div class="pain-text">
+                        <h4>Disconnected Strategy, Scattered Results</h4>
+                        <p>Working with three separate agencies for brand, ads, and web? You're getting three different visions and no one accountable for the outcome.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- SYSTEM / APPROACH -->
+<section id="system">
+    <div class="container">
+        <div class="system-head">
+            <div class="section-label r">The Approach</div>
+            <h2 class="section-title r d1">Three disciplines. One <span class="accent-teal">outcome.</span></h2>
+            <div class="title-bar r d1"></div>
+            <p class="section-sub r d2" style="margin:0 auto;text-align:center;">Brand gives you clarity. Marketing gives you reach. Web gives you conversions. Every piece compounds the next.</p>
+        </div>
+
+        <div class="pillars r d1">
+            <div class="pillar">
+                <div class="pillar-num">01 / BRAND</div>
+                <div class="pillar-icon-box">✦</div>
+                <h3>Brand Identity</h3>
+                <p>We build brands that communicate who you are before you say a word — strategy, visual identity, positioning, and the language that makes you the obvious choice.</p>
+                <div class="pillar-chips">
+                    <span class="chip">Strategy</span>
+                    <span class="chip">Visual Identity</span>
+                    <span class="chip">Positioning</span>
+                </div>
+                <div class="pillar-arrow">→</div>
+            </div>
+            <div class="pillar">
+                <div class="pillar-num">02 / MARKETING</div>
+                <div class="pillar-icon-box">📡</div>
+                <h3>Performance Marketing</h3>
+                <p>Paid ads, organic growth, and AI-powered automation built on the brand foundation — driving real pipeline, not vanity metrics. Traffic that converts because the message is right.</p>
+                <div class="pillar-chips">
+                    <span class="chip">Meta Ads</span>
+                    <span class="chip">Google Ads</span>
+                    <span class="chip">AI Automation</span>
+                </div>
+                <div class="pillar-arrow">→</div>
+            </div>
+            <div class="pillar">
+                <div class="pillar-num">03 / WEB</div>
+                <div class="pillar-icon-box">🖥️</div>
+                <h3>Web Design</h3>
+                <p>Conversion-focused websites built to sell. Every page, every section, every word earns its place — designed to turn traffic into leads and leads into revenue.</p>
+                <div class="pillar-chips">
+                    <span class="chip">Design</span>
+                    <span class="chip">Development</span>
+                    <span class="chip">Conversion CRO</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- SERVICES -->
+<section id="services">
+    <div class="container">
+        <div>
+            <div class="section-label r">What We Do</div>
+            <h2 class="section-title r d1">Everything your brand needs to <span class="accent-gold">grow.</span></h2>
+            <div class="title-bar r d1"></div>
+            <p class="section-sub r d2">Every service ties back to one question: does this move the business forward?</p>
+        </div>
+        <div class="services-grid">
+            <div class="svc-card r">
+                <div class="svc-icon">✦</div>
+                <h3>Brand Identity & Strategy</h3>
+                <p>We define who you are, who you're for, and why it matters — then translate that into a visual and verbal identity that commands attention and builds trust from first contact.</p>
+                <ul class="svc-list">
+                    <li>Brand strategy & positioning</li>
+                    <li>Logo & visual identity system</li>
+                    <li>Brand voice & messaging framework</li>
+                    <li>Brand guidelines & asset delivery</li>
+                </ul>
+            </div>
+            <div class="svc-card r d1">
+                <div class="svc-icon">📢</div>
+                <h3>Performance Marketing</h3>
+                <p>We manage paid media across Meta and Google with creatives and targeting built on your brand strategy — not guesswork. Every dollar is accountable to pipeline, not impressions.</p>
+                <ul class="svc-list">
+                    <li>Meta & Google Ads management</li>
+                    <li>Creative strategy & production</li>
+                    <li>Landing page design & testing</li>
+                    <li>Ongoing optimization & reporting</li>
+                </ul>
+            </div>
+            <div class="svc-card r d2">
+                <div class="svc-icon">🖥️</div>
+                <h3>Web Design & Development</h3>
+                <p>Strategy-led websites that look exceptional and convert. Built to reflect your brand, speak to your audience, and turn visitors into qualified leads — not just traffic.</p>
+                <ul class="svc-list">
+                    <li>Custom design & development</li>
+                    <li>Conversion rate optimization</li>
+                    <li>Landing pages & sales funnels</li>
+                    <li>Ongoing maintenance & iteration</li>
+                </ul>
+            </div>
+            <div class="svc-card r d3">
+                <div class="svc-icon">⚡</div>
+                <h3>AI-Powered Lead Automation</h3>
+                <p>The moment a lead comes in, our system responds — qualifying, following up, and booking automatically. AI voice agents, SMS sequences, and CRM automation that work 24/7.</p>
+                <ul class="svc-list">
+                    <li>Sub-90-second lead response</li>
+                    <li>AI voice receptionist</li>
+                    <li>SMS + email follow-up sequences</li>
+                    <li>CRM integration & auto-booking</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- WHY US -->
+<section id="why">
+    <div class="container">
+        <div class="why-layout">
+            <div class="why-sticky">
+                <div class="section-label r">Why Us</div>
+                <h2 class="r d1">Not a vendor.<br>A <span class="accent-teal">growth</span> partner.</h2>
+                <div class="title-bar r d1" style="margin-top:1.2rem;"></div>
+            </div>
+            <div class="why-list">
+                <div class="why-item r">
+                    <span class="why-num">01</span>
+                    <div>
+                        <h4>Strategy before execution, always</h4>
+                        <p>We don't start with a logo or an ad campaign. We start with understanding your business, your market, and your goal — and then we build the things that serve that strategy.</p>
+                    </div>
+                </div>
+                <div class="why-item r d1">
+                    <span class="why-num">02</span>
+                    <div>
+                        <h4>Brand, marketing, and web under one roof</h4>
+                        <p>When brand, marketing, and web are built together, they compound each other. No briefing three agencies. No version conflicts. No one pointing fingers when results don't show.</p>
+                    </div>
+                </div>
+                <div class="why-item r d2">
+                    <span class="why-num">03</span>
+                    <div>
+                        <h4>Accountable to outcomes, not outputs</h4>
+                        <p>We don't measure success in deliverables. We measure it in leads, conversations, and revenue. Every project has a business objective, and we don't consider the job done until it's met.</p>
+                    </div>
+                </div>
+                <div class="why-item r d3">
+                    <span class="why-num">04</span>
+                    <div>
+                        <h4>Built for businesses that are serious about scale</h4>
+                        <p>We work with founders and operators who want real growth — not a rebrand for the sake of it. If you're ready to invest in brand as a business asset, we're the right partner.</p>
+                    </div>
+                </div>
+                <div class="why-item r d4">
+                    <span class="why-num">05</span>
+                    <div>
+                        <h4>Transparent and direct — always</h4>
+                        <p>No bloated retainers for services you don't need. No fluff in the reporting. We tell you exactly what we're doing, why, and what it's producing — and we course-correct fast.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- VENTURES -->
+<section id="ventures">
+    <div class="container">
+        <div class="vent-head">
+            <div class="section-label r">Our Ventures</div>
+            <h2 class="vent-title r d1">Specialist brands. <span class="accent-teal">One parent.</span></h2>
+            <div class="title-bar r d1"></div>
+            <p class="section-sub r d2" style="margin:0 auto;text-align:center;max-width:500px;">Mr. Lucid operates focused sub-brands in specific verticals — each built on the same system, each designed to dominate its niche.</p>
+        </div>
+        <div class="ventures-grid r d2">
+            <div class="venture-card">
+                <div class="venture-tag">Sub-Brand · Healthcare</div>
+                <h3>Schedule Smiles</h3>
+                <p>AI-powered appointment generation for dental and healthcare practices. Paid ads, Google Maps dominance, and a 24/7 AI receptionist that fills chairs — automatically.</p>
+                <a href="https://appointmentagency.xyz" target="_blank" class="venture-link">Visit Site →</a>
+            </div>
+            <div class="venture-card">
+                <div class="venture-tag">Sub-Brand · Trades</div>
+                <h3>The Appointment Agency</h3>
+                <p>The same appointment-generation system, built for contractors and home service businesses. Roofing, HVAC, plumbing, landscaping — any trade that runs on booked jobs.</p>
+                <a href="https://appointmentagency.xyz" target="_blank" class="venture-link">Visit Site →</a>
+            </div>
+            <div class="venture-card">
+                <div class="venture-tag">Coming Soon</div>
+                <h3>More Verticals</h3>
+                <p>Mr. Lucid is expanding into new verticals with purpose-built brands. Each one powered by the same infrastructure, adapted to the specific needs of its market.</p>
+                <a href="mailto:hello@mrlucid.xyz" class="venture-link">Get in Touch →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- CTA -->
+<section id="cta">
+    <div class="cta-inner">
+        <div class="section-label r" style="justify-content:center;display:inline-flex;margin-bottom:1.2rem;">Ready to Build</div>
+        <h2 class="cta-title r d1">Stop looking like<br>everyone else. <span class="accent-teal">Start winning.</span></h2>
+        <p class="cta-sub r d2">Book a free 30-minute discovery call. We'll tell you exactly where your brand, marketing, or web is holding you back — and what it takes to fix it.</p>
+        <div class="cta-row r d3">
+            <a href="https://calendar.app.google/rafBQmiqHHGcoiHVA" target="_blank" class="btn-primary">Book Your Discovery Call →</a>
+            <a href="mailto:hello@mrlucid.xyz" class="btn-secondary">✉ Send Us a Message</a>
+        </div>
+        <p class="cta-note r d4">No pitch decks. No pressure. Just a real conversation about your business.</p>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+    <a href="#hero" class="footer-logo">
+        <span class="logo-dot"></span>
+        Mr. Lucid
+    </a>
+    <span class="footer-copy">© 2025 Mr. Lucid. All rights reserved.</span>
+    <ul class="footer-nav">
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#system">Approach</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#cta">Book a Call</a></li>
+        <li><button class="footer-privacy-btn" onclick="openPrivacy()">Privacy Policy</button></li>
+    </ul>
+</footer>
+
+
+<script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.r').forEach(el => io.observe(el));
+
+    document.querySelectorAll('#hero .r').forEach((el, i) => {
+        setTimeout(() => el.classList.add('vis'), 150 + i * 120);
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const t = document.querySelector(a.getAttribute('href'));
+            if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+
+    function openPrivacy() {
+        document.getElementById('privacyModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePrivacy() {
+        document.getElementById('privacyModal').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('privacyModal').addEventListener('click', function(e) {
+        if (e.target === this) closePrivacy();
+    });
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePrivacy(); });
+</script>
+
+</body>
+</html>

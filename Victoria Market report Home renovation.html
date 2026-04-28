@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AF Market Report — Home Renovation · Victoria, BC · Q2 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #060810;
+  --surface: #0c1018;
+  --surface2: #111620;
+  --border: rgba(255,255,255,0.06);
+  --border2: rgba(255,255,255,0.1);
+  --lime: #c4ff4d;
+  --emerald: #1affb2;
+  --blue: #3db8ff;
+  --text: #dde4f0;
+  --muted: #5a6678;
+  --muted2: #8494aa;
+  --problem: #ff6040;
+  --gold: #C8A84B;
+  --violet: #b57bff;
+  --syne: 'Syne', 'Helvetica Neue', Arial, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.016) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px);
+  background-size: 52px 52px;
+  pointer-events: none; z-index: 0;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--syne); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px;
+}
+.eyebrow::before, .eyebrow::after { content: ''; width: 24px; height: 1px; background: currentColor; opacity: 0.5; }
+
+.section-divider { display: flex; align-items: center; gap: 16px; margin: 48px 0 32px; }
+.section-divider .line { flex: 1; height: 1px; background: var(--border2); }
+.section-divider .label {
+  font-family: var(--syne); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted); white-space: nowrap;
+}
+
+h1 { font-family: var(--syne); font-size: clamp(30px, 5vw, 48px); font-weight: 800; line-height: 1.2; }
+h2 { font-family: var(--syne); font-size: clamp(20px, 3.5vw, 30px); font-weight: 800; line-height: 1.25; }
+h3 { font-family: var(--syne); font-size: 14px; font-weight: 700; }
+
+.card {
+  background: var(--surface); border-radius: 16px; padding: 22px 24px;
+  position: relative; overflow: hidden; border: 1px solid var(--border);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.card:hover { transform: translateY(-3px); }
+.card::after {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 120px; height: 120px; border-radius: 50%; pointer-events: none; opacity: 0.7;
+}
+
+.card--lime   { border-color: rgba(196,255,77,0.2); }
+.card--lime::after { background: radial-gradient(circle, rgba(196,255,77,0.08) 0%, transparent 70%); }
+.card--lime:hover { box-shadow: 0 16px 40px rgba(196,255,77,0.06); }
+.card--emerald { border-color: rgba(26,255,178,0.2); }
+.card--emerald::after { background: radial-gradient(circle, rgba(26,255,178,0.08) 0%, transparent 70%); }
+.card--emerald:hover { box-shadow: 0 16px 40px rgba(26,255,178,0.06); }
+.card--blue   { border-color: rgba(61,184,255,0.2); }
+.card--blue::after { background: radial-gradient(circle, rgba(61,184,255,0.08) 0%, transparent 70%); }
+.card--blue:hover { box-shadow: 0 16px 40px rgba(61,184,255,0.06); }
+.card--gold   { border-color: rgba(200,168,75,0.2); }
+.card--gold::after { background: radial-gradient(circle, rgba(200,168,75,0.08) 0%, transparent 70%); }
+.card--gold:hover { box-shadow: 0 16px 40px rgba(200,168,75,0.06); }
+.card--muted  { border-color: rgba(132,148,170,0.15); }
+.card--muted::after { background: radial-gradient(circle, rgba(132,148,170,0.06) 0%, transparent 70%); }
+.card--problem { border-color: rgba(255,96,64,0.22); }
+.card--problem::after { background: radial-gradient(circle, rgba(255,96,64,0.08) 0%, transparent 70%); }
+.card--problem:hover { box-shadow: 0 16px 40px rgba(255,96,64,0.06); }
+.card--violet { border-color: rgba(181,123,255,0.2); }
+.card--violet::after { background: radial-gradient(circle, rgba(181,123,255,0.08) 0%, transparent 70%); }
+.card--violet:hover { box-shadow: 0 16px 40px rgba(181,123,255,0.06); }
+
+.stat-grid { display: grid; gap: 14px; }
+.stat-grid--4 { grid-template-columns: repeat(4, 1fr); }
+.stat-grid--3 { grid-template-columns: repeat(3, 1fr); }
+.stat-grid--2 { grid-template-columns: repeat(2, 1fr); }
+
+.stat-card { text-align: center; padding: 18px 12px; }
+.stat-val { font-family: var(--syne); font-size: 28px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.stat-label { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted2); margin-top: 6px; }
+
+.pill { display: inline-block; font-family: var(--syne); font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; }
+.pill--low  { background: rgba(26,255,178,0.08); color: rgba(26,255,178,0.8); border: 1px solid rgba(26,255,178,0.2); }
+.pill--med  { background: rgba(200,168,75,0.08); color: rgba(200,168,75,0.8); border: 1px solid rgba(200,168,75,0.2); }
+.pill--high { background: rgba(255,96,64,0.08); color: rgba(255,96,64,0.8); border: 1px solid rgba(255,96,64,0.2); }
+.pill--yes  { background: rgba(196,255,77,0.08); color: rgba(196,255,77,0.8); border: 1px solid rgba(196,255,77,0.2); }
+.pill--no   { background: rgba(132,148,170,0.08); color: rgba(132,148,170,0.8); border: 1px solid rgba(132,148,170,0.2); }
+
+.kw-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.kw-table th { font-family: var(--syne); font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border2); }
+.kw-table td { padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.kw-table tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+.kw-table .col-kw { color: var(--text); }
+.kw-table .col-vol { font-family: var(--syne); font-weight: 700; color: var(--lime); }
+.kw-table .col-q1  { font-family: var(--syne); font-weight: 700; color: var(--emerald); }
+.kw-table .col-cpc { font-family: var(--syne); font-weight: 700; color: var(--gold); }
+.kw-table .col-idx { color: var(--muted2); }
+
+.comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.comp-card { padding: 22px 20px; }
+.comp-tier { font-family: var(--syne); font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.6; }
+.comp-name { font-family: var(--syne); font-size: 16px; font-weight: 800; margin-top: 6px; }
+.comp-meta { font-size: 12px; color: var(--muted2); margin-top: 4px; }
+.comp-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center; margin-top: 14px; }
+.comp-stat-label { font-family: var(--syne); font-size: 7px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.comp-stat-val { font-family: var(--syne); font-size: 13px; font-weight: 800; margin-top: 3px; }
+.comp-notes { font-size: 12px; color: var(--muted2); margin-top: 14px; line-height: 1.6; }
+
+.pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.pillar-card { padding: 26px 22px; }
+.pillar-icon { font-size: 28px; }
+.pillar-title { font-family: var(--syne); font-size: 15px; font-weight: 800; margin-top: 10px; }
+.pillar-items { list-style: none; margin-top: 14px; }
+.pillar-items li { font-size: 12px; color: var(--text); padding: 5px 0; display: flex; align-items: flex-start; gap: 8px; }
+.pillar-items li .arrow { opacity: 0.5; flex-shrink: 0; }
+.pillar-impact { margin-top: 16px; padding-top: 14px; text-align: center; }
+.pillar-impact-label { font-family: var(--syne); font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.pillar-impact-val { font-family: var(--syne); font-size: 13px; font-weight: 800; margin-top: 4px; }
+
+.ba-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: center; }
+.ba-card { padding: 24px; }
+.ba-label { font-family: var(--syne); font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
+.ba-val { font-family: var(--syne); font-size: 22px; font-weight: 800; margin-top: 6px; }
+.ba-list { margin-top: 12px; font-size: 12px; color: var(--muted2); line-height: 1.8; }
+.ba-arrows { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 0 12px; }
+.flash-chevron {
+  width: 0; height: 0; border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent; border-left: 12px solid var(--emerald);
+  animation: flash-pulse 0.9s ease-in-out infinite; opacity: 0;
+}
+.flash-chevron:nth-child(1) { animation-delay: 0s; }
+.flash-chevron:nth-child(2) { animation-delay: 0.18s; }
+.flash-chevron:nth-child(3) { animation-delay: 0.36s; }
+@keyframes flash-pulse {
+  0%   { opacity: 0; transform: translateX(-4px); }
+  40%  { opacity: 1; transform: translateX(0px); }
+  100% { opacity: 0; transform: translateX(4px); }
+}
+@keyframes flash-pulse-down {
+  0%   { opacity: 0; transform: translateY(-4px); }
+  40%  { opacity: 1; transform: translateY(0px); }
+  100% { opacity: 0; transform: translateY(4px); }
+}
+
+.ctx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ctx-card { padding: 22px 20px; }
+.ctx-stat { font-family: var(--syne); font-size: 32px; font-weight: 800; }
+.ctx-unit { font-family: var(--syne); font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.5; margin-left: 6px; }
+.ctx-desc { font-size: 12px; color: var(--muted2); margin-top: 8px; line-height: 1.6; }
+
+.cta-box { padding: 40px; text-align: center; background: linear-gradient(135deg, rgba(26,255,178,0.04), rgba(196,255,77,0.02)); }
+.cta-title { font-family: var(--syne); font-size: 28px; font-weight: 800; color: var(--emerald); }
+.cta-sub { font-size: 14px; color: var(--text); margin-top: 10px; line-height: 1.7; max-width: 560px; margin-left: auto; margin-right: auto; }
+.cta-steps { display: flex; gap: 20px; justify-content: center; margin-top: 28px; flex-wrap: wrap; }
+.cta-step { display: flex; align-items: flex-start; gap: 12px; text-align: left; max-width: 220px; }
+.cta-num { font-family: var(--syne); font-size: 12px; font-weight: 800; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cta-step-text { font-size: 13px; color: var(--text); line-height: 1.5; }
+.cta-url { font-family: var(--syne); font-size: 16px; font-weight: 700; color: var(--emerald); margin-top: 24px; }
+
+.topbar {
+  position: sticky; top: 0; z-index: 10; background: var(--surface);
+  border-bottom: 1px solid var(--border); padding: 10px 28px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.topbar-brand { font-family: var(--syne); font-size: 11px; font-weight: 700; color: var(--emerald); letter-spacing: 0.08em; }
+.topbar-section { font-size: 10px; color: var(--muted2); letter-spacing: 0.1em; text-transform: uppercase; }
+
+.page-footer { text-align: center; padding: 32px 28px; font-size: 10px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 64px; }
+
+section { padding: 64px 0; }
+section + section { padding-top: 0; }
+
+.page-spacer { max-width: 1100px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+.page-spacer::after { content: ''; display: block; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.06) 80%, transparent); margin: 20px 0; }
+
+.service-tag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--syne); font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; background: rgba(26,255,178,0.08); color: var(--emerald); border: 1px solid rgba(26,255,178,0.18); }
+
+.insight-box { background: rgba(26,255,178,0.04); border: 1px solid rgba(26,255,178,0.15); border-radius: 12px; padding: 20px 24px; margin: 20px 0; }
+.insight-box p { font-size: 12px; color: var(--muted2); line-height: 1.7; }
+.insight-box strong { color: var(--emerald); }
+
+.channel-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+
+.funnel-steps { display: flex; flex-direction: column; gap: 0; }
+.funnel-step { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.funnel-step:last-child { border-bottom: none; }
+.funnel-num { font-family: var(--syne); font-size: 24px; font-weight: 800; min-width: 36px; line-height: 1; }
+.funnel-content { flex: 1; }
+.funnel-title { font-family: var(--syne); font-size: 14px; font-weight: 700; }
+.funnel-desc { font-size: 12px; color: var(--muted2); margin-top: 4px; line-height: 1.6; }
+.funnel-metric { font-family: var(--syne); font-size: 11px; font-weight: 700; margin-top: 6px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.6s ease-out both; }
+.fade-up:nth-child(1) { animation-delay: 0.05s; }
+.fade-up:nth-child(2) { animation-delay: 0.1s; }
+.fade-up:nth-child(3) { animation-delay: 0.15s; }
+.fade-up:nth-child(4) { animation-delay: 0.2s; }
+
+@media (max-width: 900px) {
+  .stat-grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .comp-grid, .pillar-grid { grid-template-columns: 1fr; }
+  .ba-grid { grid-template-columns: 1fr; }
+  .ba-arrows { flex-direction: row; justify-content: center; padding: 10px 0; }
+  .ba-arrows .flash-chevron { border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 12px solid var(--emerald); border-bottom: none; animation-name: flash-pulse-down; }
+  .channel-row { grid-template-columns: 1fr; }
+  .ctx-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .stat-grid--3 { grid-template-columns: 1fr 1fr; }
+  .kw-table th, .kw-table td { padding: 6px 6px; font-size: 11px; }
+  .cta-steps { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-brand">VICTORIA MARKET REPORT</div>
+  <div class="topbar-section">Market Report · Home Renovation · Victoria, BC · Q2 2026</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     SECTION 1 — COVER
+     ════════════════════════════════════════ -->
+<section style="text-align:center; padding: 80px 0 48px;">
+  <div class="container">
+    <div class="eyebrow" style="color:var(--emerald); justify-content:center;">Growth Report · Victoria, BC</div>
+    <h1>Home Renovation<br><span style="color:var(--emerald);">Victoria, BC</span></h1>
+    <div style="width:120px;height:1px;background:var(--border2);margin:28px auto;"></div>
+    <p style="font-size:15px;color:var(--muted2);max-width:520px;margin:0 auto;line-height:1.7;">
+      A local market analysis for home renovation contractors in Greater Victoria — covering search demand, Google Maps opportunity, competitor gaps, and the full AF growth stack: <strong style="color:var(--text);">Google Maps SEO + AI Automation + a professional website built to convert.</strong>
+    </p>
+
+    <div style="display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap;">
+      <span class="service-tag">🛁 Bathroom Remodel</span>
+      <span class="service-tag">🍳 Kitchen Renovation</span>
+      <span class="service-tag">🪟 Basement Finishing</span>
+      <span class="service-tag">🏠 General Contracting</span>
+      <span class="service-tag">🔨 Flooring & Tile</span>
+      <span class="service-tag">🚿 Plumbing & Fixtures</span>
+    </div>
+
+    <div class="stat-grid stat-grid--4" style="margin-top:36px;">
+      <div class="card card--emerald stat-card fade-up">
+        <div class="stat-val" style="color:var(--emerald); font-size:22px;">$24.3B</div>
+        <div class="stat-label">Canadian Renovation Market 2025</div>
+      </div>
+      <div class="card card--lime stat-card fade-up">
+        <div class="stat-val" style="color:var(--lime); font-size:22px;">4.2%</div>
+        <div class="stat-label">Industry CAGR Through 2030</div>
+      </div>
+      <div class="card card--blue stat-card fade-up">
+        <div class="stat-val" style="color:var(--blue); font-size:22px;">397K</div>
+        <div class="stat-label">Greater Victoria CMA Population</div>
+      </div>
+      <div class="card card--gold stat-card fade-up">
+        <div class="stat-val" style="color:var(--gold); font-size:22px;">$1.1M+</div>
+        <div class="stat-label">Avg. Victoria Home Value 2025</div>
+      </div>
+    </div>
+
+    <p style="font-size:11px;color:var(--muted);margin-top:36px;">Data sources: Statistics Canada · CMHC Housing Data 2025 · BC Assessment Authority · DataForSEO Keyword Intelligence · First Page Sage Local Pack CTR Study 2025 · Google GBP Insights Benchmarks</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:4px;">Prepared by Victoria Market Report · Q2 2026 · (604) 900-7876</p>
+  </div>
+</section>
+
+<div class="page-spacer"></div>
+
+<!-- ════════════════════════════════════════
+     SECTION 2 — MARKET CONTEXT
+     ════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="eyebrow" style="color:var(--blue);justify-content:center;">Victoria, BC Market Intelligence</div>
+      <h2>Why Victoria Is One of Canada's<br><span style="color:var(--blue);">Best Renovation Markets Right Now</span></h2>
+    </div>
+
+    <div class="ctx-grid" style="margin-top:32px;">
+      <div class="card card--blue ctx-card fade-up">
+        <span class="ctx-stat" style="color:var(--blue);">$1.1M+</span><span class="ctx-unit" style="color:var(--blue);">Avg Home Value</span>
+        <div class="ctx-desc">Victoria homeowners are sitting on some of the highest property values in Canada. When your home is worth over a million dollars, a $30,000 kitchen renovation or a $18,000 bathroom remodel is a logical investment — not a luxury. High home equity means homeowners are willing and able to spend on quality renovations. This is a premium-intent market. The buyer is not price-shopping on Kijiji — they're Googling "best kitchen renovation company Victoria BC" and calling the top result.</div>
+      </div>
+      <div class="card card--emerald ctx-card fade-up">
+        <span class="ctx-stat" style="color:var(--emerald);">57%</span><span class="ctx-unit" style="color:var(--emerald);">Homeownership Rate</span>
+        <div class="ctx-desc">Greater Victoria's homeownership rate sits at 57% across the CMA, with ownership rates significantly higher in Saanich, Oak Bay, Langford, and Colwood — the primary renovation catchment zones. The median age of Victoria's housing stock is over 40 years, meaning a massive share of the city's homes are due for kitchen, bathroom, and basement upgrades. Older homes = higher renovation urgency. CMHC's 2025 data confirms renovation spending in BC is growing faster than national average.</div>
+      </div>
+      <div class="card card--lime ctx-card fade-up">
+        <span class="ctx-stat" style="color:var(--lime);">$24.3B</span><span class="ctx-unit" style="color:var(--lime);">Canada Reno Market</span>
+        <div class="ctx-desc">The Canadian home renovation industry hit $24.3B in 2025, growing at a 4.2% CAGR toward $29.8B by 2030. BC accounts for approximately 16–18% of national renovation spend — disproportionately high due to housing values, weather (exterior projects year-round), and an affluent aging population investing in livability. Victoria specifically sees strong demand driven by retirees upgrading older homes, young families buying dated properties and renovating immediately, and income-property investors improving rental stock.</div>
+      </div>
+      <div class="card card--gold ctx-card fade-up">
+        <span class="ctx-stat" style="color:var(--gold);">40+ yrs</span><span class="ctx-unit" style="color:var(--gold);">Avg Victoria Housing Age</span>
+        <div class="ctx-desc">The majority of Victoria's residential housing stock was built between 1950 and 1990. These homes need kitchens modernized, bathrooms waterproofed and retiled, basements converted to livable space, and outdated layouts opened up. This isn't discretionary spending for these homeowners — it's maintenance, resale value protection, and quality-of-life investment. A contractor who shows up at the top of Google Maps for "bathroom renovation Victoria" is talking to a buyer who is already decided and just choosing who to trust with their home.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="page-spacer"></div>
+
+<!-- ════════════════════════════════════════
+     SECTION 3 — GOOGLE MAPS TOP 3 UPSIDE
+     ════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="eyebrow" style="color:var(--lime);justify-content:center;">The Core Value Proposition</div>
+      <h2>What Top 3 on Google Maps<br><span style="color:var(--lime);">Actually Means in Real Jobs & Revenue</span></h2>
+      <p style="font-size:13px;color:var(--muted2);margin-top:10px;">This is the single highest-ROI move a Victoria renovation contractor can make. Here's the full math.</p>
+    </div>
+
+    <!-- Maps CTR data -->
+    <div class="section-divider">
+      <div class="line"></div>
+      <div class="label">How the Local Pack CTR Works — Sourced Data</div>
+      <div class="line"></div>
+    </div>
+
+    <div class="stat-grid stat-grid--4" style="margin-top:0;">
+      <div class="card card--lime stat-card fade-up">
+        <div class="stat-val" style="color:var(--lime);">17.6%</div>
+        <div class="stat-label">Local Pack #1 CTR</div>
+      </div>
+      <div class="card card--lime stat-card fade-up">
+        <div class="stat-val" style="color:var(--lime);">15.4%</div>
+        <div class="stat-label">Local Pack #2 CTR</div>
+      </div>
+      <div class="card card--lime stat-card fade-up">
+        <div class="stat-val" style="color:var(--lime);">15.1%</div>
+        <div class="stat-label">Local Pack #3 CTR</div>
+      </div>
+      <div class="card card--problem stat-card fade-up">
+        <div class="stat-val" style="color:var(--problem);">&lt;5%</div>
+        <div class="stat-label">Position #4–10 CTR</div>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-top:20px;">
+      <p>Source: <strong>First Page Sage / Rallio 2025.</strong> The top 3 Local Pack results collectively capture <strong>44% of all clicks</strong> on a local search results page — more than organic (29%) and paid ads combined. Businesses outside the top 3 receive a combined &lt;5% of clicks. For a high-intent search like "bathroom renovation Victoria BC" or "kitchen remodel near me," if you are not in the top 3, you are effectively <strong>invisible to 95% of searchers.</strong> A business at #1 receives <strong>93% more conversion actions</strong> (calls, direction requests, website visits) than businesses ranked #4–10.</p>
+    </div>
+
+    <!-- Keyword volume table -->
+    <div class="section-divider">
+      <div class="line"></div>
+      <div class="label">Victoria, BC Renovation Keywords — Monthly Search Volume × CTR</div>
+      <div class="line"></div>
+    </div>
+
+    <table class="kw-table">
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Est. Monthly Searches</th>
+          <th>Pack CTR (Avg #1–3)</th>
+          <th>Profile Clicks/Mo</th>
+          <th>Est. Calls + Inquiries (38%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-kw">bathroom renovation victoria bc</td>
+          <td class="col-vol">390</td>
+          <td class="col-idx">16%</td>
+          <td class="col-q1">62</td>
+          <td class="col-cpc">~24</td>
+        </tr>
+        <tr>
+          <td class="col-kw">kitchen renovation victoria bc</td>
+          <td class="col-vol">480</td>
+          <td class="col-idx">16%</td>
+          <td class="col-q1">77</td>
+          <td class="col-cpc">~29</td>
+        </tr>
+        <tr>
+          <td class="col-kw">home renovation victoria bc</td>
+          <td class="col-vol">720</td>
+          <td class="col-idx">16%</td>
+          <td class="col-q1">115</td>
+          <td class="col-cpc">~44</td>
+        </tr>
+        <tr>
+          <td class="col-kw">bathroom remodel victoria bc</td>
+          <td class="col-vol">260</td>
+          <td class="col-idx">16%</td>
+          <td class="col-q1">42</td>
+          <td class="col-cpc">~16</td>
+        </tr>
+        <tr>
+          <td class="col-kw">kitchen remodel victoria bc</td>
+          <td class="col-vol">210</td>
+          <td class="col-idx">16%</td>
+          <td class="col-q1">34</td>
+          <td class="col-cpc">~13</td>
+        </tr>
+        <tr>
+          <td class="col-kw">general contractor victoria bc</td>
+          <td class="col-vol">880</td>
+          <td class="col-idx">16%</td>
+          <td class="col-q1">141</td>
+          <td class="col-cpc">~54</td>
+        </tr>
+        <tr>
+          <td class="col-kw">basement renovation victoria bc</td>
+          <td class="col-vol">320</td>
+          <td class="col-idx">16%</td>
+          <td class="col-q1">51</td>
+          <td class="col-cpc">~19</td>
+        </tr>
+        <tr>
+          <td class="col-kw">renovation contractor near me victoria</td>
+          <td class="col-vol">290</td>
+          <td class="col-idx">16%</td>
+          <td class="col-q1">46</td>
+          <td class="col-cpc">~18</td>
+        </tr>
+        <tr>
+          <td class="col-kw">flooring installation victoria bc</td>
+          <td class="col-vol">340</td>
+          <td class="col-idx">16%</td>
+          <td class="col-q1">54</td>
+          <td class="col-cpc">~21</td>
+        </tr>
+        <tr>
+          <td class="col-kw">tile installer victoria bc</td>
+          <td class="col-vol">170</td>
+          <td class="col-idx">16%</td>
+          <td class="col-q1">27</td>
+          <td class="col-cpc">~10</td>
+        </tr>
+        <tr style="background:rgba(196,255,77,0.04);">
+          <td class="col-kw" style="font-family:var(--syne);font-weight:800;color:var(--lime);">TOTAL (10-keyword cluster)</td>
+          <td class="col-vol" style="color:var(--lime);font-weight:800;">4,060/mo</td>
+          <td class="col-idx">—</td>
+          <td class="col-q1" style="color:var(--lime);font-weight:800;">649</td>
+          <td class="col-cpc" style="color:var(--lime);font-weight:800;">~248</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:11px;color:var(--muted);margin-top:10px;">Search volume estimates via DataForSEO keyword intelligence, Victoria CMA / BC geo-targeting. CTR based on First Page Sage / Rallio Local Pack benchmarks (2025). Direction request / call share based on Google GBP Insights industry average of 38% of profile actions.</p>
+
+    <!-- Revenue math -->
+    <div class="section-divider">
+      <div class="line"></div>
+      <div class="label">Translating Profile Clicks → Booked Projects → Revenue</div>
+      <div class="line"></div>
+    </div>
+
+    <div class="stat-grid stat-grid--4" style="margin-top:0;">
+      <div class="card card--emerald stat-card fade-up">
+        <div class="stat-val" style="color:var(--emerald);">649</div>
+        <div class="stat-label">Monthly Profile Clicks (Top 3)</div>
+      </div>
+      <div class="card card--blue stat-card fade-up">
+        <div class="stat-val" style="color:var(--blue);">6.3%</div>
+        <div class="stat-label">Booking-Enabled Profile Conversion Rate</div>
+      </div>
+      <div class="card card--lime stat-card fade-up">
+        <div class="stat-val" style="color:var(--lime);">41</div>
+        <div class="stat-label">Est. Quote Requests / Month</div>
+      </div>
+      <div class="card card--gold stat-card fade-up">
+        <div class="stat-val" style="color:var(--gold);">30–40%</div>
+        <div class="stat-label">Quote-to-Booked Job Rate (Contractors)</div>
+      </div>
+    </div>
+
+    <div class="card card--lime" style="padding:28px;margin-top:20px;text-align:center;background:rgba(196,255,77,0.03);">
+      <div style="font-family:var(--syne);font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(196,255,77,0.6);margin-bottom:10px;">The Bottom Line — Google Maps Top 3</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px;">
+        <div>
+          <div style="font-family:var(--syne);font-size:32px;font-weight:800;color:var(--lime);">12–16</div>
+          <div style="font-size:10px;color:var(--muted2);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;">New Jobs / Month<br>from Maps alone</div>
+        </div>
+        <div>
+          <div style="font-family:var(--syne);font-size:32px;font-weight:800;color:var(--lime);">$18K–$35K</div>
+          <div style="font-size:10px;color:var(--muted2);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;">Avg Job Value<br>(bathroom / kitchen)</div>
+        </div>
+        <div>
+          <div style="font-family:var(--syne);font-size:32px;font-weight:800;color:var(--lime);">$216K–$420K</div>
+          <div style="font-size:10px;color:var(--muted2);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;">Annual Revenue Upside<br>from free search traffic</div>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--muted);margin-top:20px;">Conservative model. Based on 12–16 booked projects/month × $18K–$35K average bathroom/kitchen project value (CMHC / HomeStars Canada 2025 renovation cost benchmarks). Assumes Top 3 placement across primary keyword cluster. Zero paid ad spend.</p>
+    </div>
+
+    <div class="insight-box">
+      <p><strong>Why this matters for Victoria specifically:</strong> The average bathroom renovation in Greater Victoria runs <strong>$15,000–$28,000</strong>. Kitchen renovations average <strong>$25,000–$55,000</strong>. Basement conversions and full home renos push <strong>$60,000–$150,000+</strong>. This is not a market where landing one extra job per month is incremental — it is transformative. A single additional kitchen remodel from a Maps ranking covers months of marketing investment. The math on Google Maps SEO for home renovation is arguably the strongest of any trade vertical in Canada.</p>
+    </div>
+  </div>
+</section>
+
+<div class="page-spacer"></div>
+
+<!-- ════════════════════════════════════════
+     SECTION 4 — COMPETITOR LANDSCAPE
+     ════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="eyebrow" style="color:var(--violet);justify-content:center;">Victoria Competitive Landscape</div>
+      <h2>What You're Up Against<br><span style="color:var(--violet);">on Google Maps Right Now</span></h2>
+      <p style="font-size:13px;color:var(--muted2);margin-top:10px;">Most Victoria renovation contractors have weak GBP profiles, sparse reviews, and outdated or no websites — the bar to beat them is low.</p>
+    </div>
+
+    <div class="comp-grid" style="margin-top:28px;">
+      <div class="card card--emerald comp-card fade-up">
+        <div class="comp-tier" style="color:var(--emerald);">Category Leader · Maps</div>
+        <div class="comp-name">Mid-Size Renovation Firms</div>
+        <div class="comp-meta">100–300 Google Reviews · Dedicated Estimators · Some GBP Optimization</div>
+        <div style="background:rgba(26,255,178,0.08);height:1px;margin:14px 0;"></div>
+        <div class="comp-stats">
+          <div><div class="comp-stat-label">Reviews</div><div class="comp-stat-val" style="color:var(--emerald);">150–300</div></div>
+          <div><div class="comp-stat-label">Avg Rating</div><div class="comp-stat-val" style="color:var(--emerald);">4.5–4.8★</div></div>
+          <div><div class="comp-stat-label">Website</div><div class="comp-stat-val" style="color:var(--emerald);">Basic</div></div>
+        </div>
+        <div class="comp-notes">These are the current #1–#3 holders. They have volume but their GBP profiles are rarely optimized — missing photo freshness, Q&A, service-specific posts, and booking CTAs. A well-optimized competitor can displace them in 90–180 days with consistent GBP signals and a superior review velocity strategy.</div>
+      </div>
+      <div class="card card--gold comp-card fade-up">
+        <div class="comp-tier" style="color:var(--gold);">Mid-Pack · Vulnerable</div>
+        <div class="comp-name">Owner-Operated Contractors</div>
+        <div class="comp-meta">20–80 Reviews · Inconsistent Posting · Weak Websites or None</div>
+        <div style="background:rgba(200,168,75,0.08);height:1px;margin:14px 0;"></div>
+        <div class="comp-stats">
+          <div><div class="comp-stat-label">Reviews</div><div class="comp-stat-val" style="color:var(--gold);">20–80</div></div>
+          <div><div class="comp-stat-label">Avg Rating</div><div class="comp-stat-val" style="color:var(--gold);">4.2–4.6★</div></div>
+          <div><div class="comp-stat-label">Website</div><div class="comp-stat-val" style="color:var(--gold);">Outdated</div></div>
+        </div>
+        <div class="comp-notes">The majority of Victoria's renovation contractors fall here. They rely on word-of-mouth and HomeStars listings. Their GBP profiles are claimed but neglected — no recent photos, no responses to reviews, no service posts. These are the easiest to leapfrog with 60 days of focused GBP work. Most don't have a website that converts.</div>
+      </div>
+      <div class="card card--problem comp-card fade-up">
+        <div class="comp-tier" style="color:var(--problem);">The Gap</div>
+        <div class="comp-name">No-Web Presence Operators</div>
+        <div class="comp-meta">&lt;15 Reviews · Unclaimed or Minimal GBP · Fully Invisible Online</div>
+        <div style="background:rgba(255,96,64,0.08);height:1px;margin:14px 0;"></div>
+        <div class="comp-stats">
+          <div><div class="comp-stat-label">Reviews</div><div class="comp-stat-val" style="color:var(--problem);">&lt;15</div></div>
+          <div><div class="comp-stat-label">GBP Status</div><div class="comp-stat-val" style="color:var(--problem);">Weak</div></div>
+          <div><div class="comp-stat-label">Website</div><div class="comp-stat-val" style="color:var(--problem);">None</div></div>
+        </div>
+        <div class="comp-notes">These contractors are doing work but entirely off the digital grid. They don't compete for Maps traffic at all — they're not even in the conversation. When a homeowner searches "bathroom renovation Victoria," these businesses do not exist. This is where most of the market actually lives — and why a properly optimized profile stands out immediately.</div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <p><strong>The Opportunity:</strong> Victoria's renovation market is fragmented. There is no single dominant brand that owns Google Maps across kitchen, bathroom, basement, and general contracting simultaneously. The contractor who invests in consistent GBP optimization, review generation, and a professional website with clear conversion paths will consolidate that real estate — and hold it. The AF system is specifically built to do exactly this.</p>
+    </div>
+  </div>
+</section>
+
+<div class="page-spacer"></div>
+
+<!-- ════════════════════════════════════════
+     SECTION 5 — THE AF GROWTH STACK
+     ════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="eyebrow" style="color:var(--gold);justify-content:center;">The AF System</div>
+      <h2>Three Pillars. One Growth Stack.<br><span style="color:var(--gold);">Built Specifically for Victoria Renovation Contractors.</span></h2>
+    </div>
+
+    <div class="pillar-grid" style="margin-top:32px;">
+      <!-- Pillar 1: Maps SEO -->
+      <div class="card card--lime pillar-card fade-up">
+        <div class="pillar-icon">📍</div>
+        <div class="pillar-title" style="color:var(--lime);">Pillar 1<br>Google Maps SEO</div>
+        <ul class="pillar-items">
+          <li><span class="arrow" style="color:var(--lime);">→</span>Full Google Business Profile audit + optimization (categories, services, attributes, description)</li>
+          <li><span class="arrow" style="color:var(--lime);">→</span>Weekly GBP posts with project photos and service-specific keywords</li>
+          <li><span class="arrow" style="color:var(--lime);">→</span>Review generation system — automated post-job follow-up via SMS/email prompting satisfied clients to leave 5-star reviews</li>
+          <li><span class="arrow" style="color:var(--lime);">→</span>Citation cleanup and local directory consistency (NAP uniformity across 40+ directories)</li>
+          <li><span class="arrow" style="color:var(--lime);">→</span>Geo-targeted keyword targeting: Victoria, Saanich, Langford, Oak Bay, Esquimalt coverage</li>
+        </ul>
+        <div class="pillar-impact" style="border-top:1px solid rgba(196,255,77,0.15);">
+          <div class="pillar-impact-label">Expected Outcome</div>
+          <div class="pillar-impact-val" style="color:var(--lime);">Top 3 placement in 90–180 days · Free inbound traffic, no ad spend</div>
+        </div>
+      </div>
+
+      <!-- Pillar 2: AI Automation -->
+      <div class="card card--emerald pillar-card fade-up">
+        <div class="pillar-icon">🤖</div>
+        <div class="pillar-title" style="color:var(--emerald);">Pillar 2<br>AI Automation</div>
+        <ul class="pillar-items">
+          <li><span class="arrow" style="color:var(--emerald);">→</span>AI voice agent handles inbound calls 24/7 — answers questions, qualifies leads, books estimate appointments into your calendar automatically</li>
+          <li><span class="arrow" style="color:var(--emerald);">→</span>Missed call text-back: every unanswered call triggers an immediate SMS follow-up within 60 seconds</li>
+          <li><span class="arrow" style="color:var(--emerald);">→</span>Automated review request sequences sent after project completion via SMS + email (2-touch cadence)</li>
+          <li><span class="arrow" style="color:var(--emerald);">→</span>Lead nurture automation: prospects who don't book get a 3-email drip sequence over 7 days keeping you top-of-mind</li>
+          <li><span class="arrow" style="color:var(--emerald);">→</span>CRM pipeline tracking — every lead captured, tagged, and followed up without manual effort</li>
+        </ul>
+        <div class="pillar-impact" style="border-top:1px solid rgba(26,255,178,0.15);">
+          <div class="pillar-impact-label">Expected Outcome</div>
+          <div class="pillar-impact-val" style="color:var(--emerald);">Zero leads fall through the cracks · AI books jobs while you're on a job site</div>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Website -->
+      <div class="card card--blue pillar-card fade-up">
+        <div class="pillar-icon">🌐</div>
+        <div class="pillar-title" style="color:var(--blue);">Pillar 3<br>Professional Website</div>
+        <ul class="pillar-items">
+          <li><span class="arrow" style="color:var(--blue);">→</span>Custom-designed, mobile-first website built to convert — not just look good</li>
+          <li><span class="arrow" style="color:var(--blue);">→</span>Dedicated service pages for each offering: kitchen remodel, bathroom renovation, basement finishing, general contracting</li>
+          <li><span class="arrow" style="color:var(--blue);">→</span>Project gallery with before/after photos — the #1 trust signal for renovation buyers</li>
+          <li><span class="arrow" style="color:var(--blue);">→</span>Integrated quote request form + direct calendar booking widget</li>
+          <li><span class="arrow" style="color:var(--blue);">→</span>SEO-structured for Google: geo-targeted title tags, local schema markup, fast load speed — feeds directly into Maps ranking signals</li>
+        </ul>
+        <div class="pillar-impact" style="border-top:1px solid rgba(61,184,255,0.15);">
+          <div class="pillar-impact-label">Expected Outcome</div>
+          <div class="pillar-impact-val" style="color:var(--blue);">A website that works as a sales tool, not a business card</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="page-spacer"></div>
+
+<!-- ════════════════════════════════════════
+     SECTION 6 — HOW IT WORKS (FUNNEL)
+     ════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="eyebrow" style="color:var(--violet);justify-content:center;">The End-to-End System</div>
+      <h2>From Google Search<br><span style="color:var(--violet);">to Booked Project — Automated</span></h2>
+      <p style="font-size:13px;color:var(--muted2);margin-top:10px;">This is what the AF system looks like in motion for a Victoria renovation contractor.</p>
+    </div>
+
+    <div style="margin-top:32px;" class="card card--violet">
+      <div class="funnel-steps" style="padding:8px 4px;">
+        <div class="funnel-step">
+          <div class="funnel-num" style="color:var(--lime);">01</div>
+          <div class="funnel-content">
+            <div class="funnel-title">Homeowner Searches "Bathroom Renovation Victoria BC"</div>
+            <div class="funnel-desc">They're on Google Maps or regular Google Search. They see a Local Pack of 3 results. 44% of all clicks go to these 3 results — the rest get almost nothing.</div>
+            <div class="funnel-metric" style="color:var(--lime);">4,060 total searches/month across core keyword cluster</div>
+          </div>
+        </div>
+        <div class="funnel-step">
+          <div class="funnel-num" style="color:var(--emerald);">02</div>
+          <div class="funnel-content">
+            <div class="funnel-title">Your GBP Profile Appears in Top 3 — They Click</div>
+            <div class="funnel-desc">Your profile shows 80+ reviews, fresh project photos, detailed services, and an active posting cadence. Trust is immediate. They click through to your profile or website.</div>
+            <div class="funnel-metric" style="color:var(--emerald);">649 profile clicks/month estimated at Top 3 across keyword cluster</div>
+          </div>
+        </div>
+        <div class="funnel-step">
+          <div class="funnel-num" style="color:var(--blue);">03</div>
+          <div class="funnel-content">
+            <div class="funnel-title">They Visit Your Website — It Converts</div>
+            <div class="funnel-desc">Your professional website shows gallery photos of completed Victoria kitchens and bathrooms, clear service pages, real testimonials, and a simple "Request a Quote" form. No friction, no guesswork. They fill out the form or call.</div>
+            <div class="funnel-metric" style="color:var(--blue);">~41 quote requests/month at 6.3% profile-to-contact conversion</div>
+          </div>
+        </div>
+        <div class="funnel-step">
+          <div class="funnel-num" style="color:var(--gold);">04</div>
+          <div class="funnel-content">
+            <div class="funnel-title">AI Handles the Response — Instantly</div>
+            <div class="funnel-desc">Whether they called and got voicemail, filled out a form, or messaged the GBP — the AI responds within 60 seconds. Answers basic questions, collects project scope, and books them directly into your estimate calendar. You show up to a warm, pre-qualified appointment.</div>
+            <div class="funnel-metric" style="color:var(--gold);">Zero leads lost to slow follow-up · Response time: &lt;60 seconds, 24/7</div>
+          </div>
+        </div>
+        <div class="funnel-step">
+          <div class="funnel-num" style="color:var(--violet);">05</div>
+          <div class="funnel-content">
+            <div class="funnel-title">Job Completed → Automated Review Request</div>
+            <div class="funnel-desc">72 hours after job completion, your client gets a 2-message SMS sequence thanking them and asking them to leave a Google review. This compounds your Maps ranking authority month over month — more reviews = stronger rankings = more leads = more reviews.</div>
+            <div class="funnel-metric" style="color:var(--violet);">Review velocity compounds your Maps position over time</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="page-spacer"></div>
+
+<!-- ════════════════════════════════════════
+     SECTION 7 — BEFORE / AFTER + WHY NOW
+     ════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="eyebrow" style="color:var(--emerald);justify-content:center;">The Transformation</div>
+      <h2>Before vs. After<br><span style="color:var(--emerald);">What Changes in 6–12 Months</span></h2>
+    </div>
+
+    <div class="ba-grid" style="margin-top:32px;">
+      <div class="card card--problem ba-card">
+        <div class="ba-label" style="color:rgba(255,96,64,0.7);">Before</div>
+        <div class="ba-val" style="color:var(--problem);">Invisible on Google. Leads by luck.</div>
+        <div class="ba-list">No top-3 Maps presence · Appearing for &lt;5% of local renovation searches · Phone rings on word-of-mouth only<br>GBP unclaimed or neglected · No review generation strategy · Reviews stagnant at 10–30<br>Website outdated, not mobile-optimized, no clear quote request flow<br>Missed calls not followed up · No CRM · Leads slip through constantly<br>Competing on price against low-ball operators because trust signals are weak</div>
+      </div>
+      <div class="ba-arrows">
+        <span class="flash-chevron"></span>
+        <span class="flash-chevron"></span>
+        <span class="flash-chevron"></span>
+      </div>
+      <div class="card card--emerald ba-card" style="background:rgba(26,255,178,0.02);">
+        <div class="ba-label" style="color:rgba(26,255,178,0.7);">After (6–12 Months)</div>
+        <div class="ba-val" style="color:var(--emerald);">Top 3 on Maps. Jobs book themselves.</div>
+        <div class="ba-list">Ranking Top 3 for "bathroom renovation Victoria," "kitchen renovation Victoria," and 8+ related keywords · 12–16 inbound quote requests/month from free traffic<br>80–150+ Google reviews with active response cadence · Review velocity growing monthly<br>Professional website with project gallery, service pages, quote form, and direct booking<br>AI voice agent + missed-call SMS = zero leads lost to slow response · All leads auto-logged in CRM<br>Automated post-job review requests running 24/7 · Compounding Maps authority month over month</div>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-family:var(--syne);font-size:16px;font-weight:800;color:var(--emerald);margin-top:24px;">Maps Top 3 (Free Traffic) + AI Automation (Zero Lead Leakage) + Website (Converts) = Your Full Growth Stack</p>
+
+    <!-- Why Now -->
+    <div class="section-divider">
+      <div class="line"></div>
+      <div class="label">Why Now</div>
+      <div class="line"></div>
+    </div>
+
+    <div class="ctx-grid">
+      <div class="card card--lime ctx-card fade-up">
+        <span class="ctx-stat" style="color:var(--lime);">First Mover</span>
+        <div class="ctx-desc">Most Victoria renovation contractors are not investing in GBP optimization right now. The contractors currently in the Top 3 got there by default — not by strategy. This window closes as more contractors wake up to local SEO. The first contractor in your niche to build a dominant Maps presence locks in position advantage that compounds over time. Waiting 12 months means competing against an incumbent who already has 200 reviews and daily GBP posts.</div>
+      </div>
+      <div class="card card--gold ctx-card fade-up">
+        <span class="ctx-stat" style="color:var(--gold);">$1.1M+</span><span class="ctx-unit" style="color:var(--gold);">Avg Home Value</span>
+        <div class="ctx-desc">Victoria's high property values mean homeowners have more equity, more willingness to invest in major renovations, and higher average job values. A single kitchen reno in Oak Bay or Saanich can be $40,000–$80,000. The ROI math on a Google Maps investment in this market is exceptional — one extra job per month from organic traffic pays for an entire year of AF services many times over. This is the highest-value renovation market on Vancouver Island.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="page-spacer"></div>
+
+<!-- ════════════════════════════════════════
+     SECTION 8 — CTA
+     ════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="card card--emerald cta-box">
+      <div class="cta-title">Ready to Own Google Maps in Victoria?</div>
+      <div class="cta-sub">Victoria Market Report builds the complete local growth stack — Google Maps SEO, AI automation that books jobs while you sleep, and a professional website that converts visitors into paying clients. No paid ads. No complexity. Just a system that gets your phone ringing with qualified Victoria homeowners ready to spend.</div>
+      <div class="cta-steps">
+        <div class="cta-step">
+          <div class="cta-num" style="background:rgba(26,255,178,0.12);color:var(--emerald);">01</div>
+          <div class="cta-step-text">Reply to this email to book a 20-min strategy call</div>
+        </div>
+        <div class="cta-step">
+          <div class="cta-num" style="background:rgba(196,255,77,0.12);color:var(--lime);">02</div>
+          <div class="cta-step-text">We audit your GBP profile and current Maps position</div>
+        </div>
+        <div class="cta-step">
+          <div class="cta-num" style="background:rgba(61,184,255,0.12);color:var(--blue);">03</div>
+          <div class="cta-step-text">Your website and automation stack launch within 48 hours</div>
+        </div>
+      </div>
+      <div class="cta-url">(604) 900-7876</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  © 2026 Victoria Market Report. All data sourced from Statistics Canada Census 2021/2026 · CMHC Housing Market Data 2025 · BC Assessment Authority · DataForSEO Keyword Intelligence (Victoria CMA) · First Page Sage Local Pack CTR Study 2025 · Google GBP Insights Industry Benchmarks · HomeStars Canada Renovation Cost Report 2025 · Precedence Research Canadian Home Improvement Market 2025.<br>
+  Prepared by Victoria Market Report · (604) 900-7876
+</div>
+
+</body>
+</html>
